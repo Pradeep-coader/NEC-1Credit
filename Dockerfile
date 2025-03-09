@@ -1,14 +1,17 @@
-version: '3'
-services:
-  pradeep:
-    image: "pradeep3005/22it031-personal-api-docker"
-    container_name: pradeep_container
-    restart: always
-    ports:
-      - "5007:5000"
-  jotheeswaran:
-    image: "jotheeswaranjd7/22itl02-personal-api-docker"
-    container_name: jotheeswaranjd_container
-    restart: always
-    ports:
-      - "5008:5000"
+# Use an official Python runtime as the base image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container
+COPY . /app
+
+# Install any necessary dependencies
+RUN pip install --no-cache-dir flask
+
+# Make port 5000 available to the world outside the container
+EXPOSE 5000
+
+ENV FLASK_APP=hello-world.py
+CMD ["python","hello-world.py"]
